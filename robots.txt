@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /digital-workspace-section.html
+
+Sitemap: https://homeorganizersli.com/sitemap.xml
