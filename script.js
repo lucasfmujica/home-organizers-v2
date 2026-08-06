@@ -138,6 +138,87 @@
   setNavH();
   window.addEventListener("resize", setNavH);
 
+  /* ---------- Eased in-page scrolling for anchor links ---------- */
+  var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var scrollRAF = null;
+
+  function stopScroll() {
+    if (scrollRAF !== null) {
+      cancelAnimationFrame(scrollRAF);
+      scrollRAF = null;
+      document.documentElement.style.scrollBehavior = "";
+    }
+  }
+  // Any manual scroll wins over an animation in flight.
+  ["wheel", "touchstart", "keydown"].forEach(function (evt) {
+    window.addEventListener(evt, stopScroll, { passive: true });
+  });
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function scrollToY(end) {
+    var start = window.pageYOffset;
+    var delta = end - start;
+    if (Math.abs(delta) < 2) return;
+
+    stopScroll();
+    // Our own per-frame scrollTo calls must not be re-smoothed by the browser.
+    document.documentElement.style.scrollBehavior = "auto";
+
+    // Longer trips get a little more time, within a comfortable range.
+    var duration = Math.min(1100, Math.max(520, Math.abs(delta) * 0.45));
+    var t0 = null;
+
+    function step(now) {
+      if (t0 === null) t0 = now;
+      var p = Math.min(1, (now - t0) / duration);
+      window.scrollTo(0, start + delta * easeInOutCubic(p));
+      if (p < 1) {
+        scrollRAF = requestAnimationFrame(step);
+      } else {
+        scrollRAF = null;
+        document.documentElement.style.scrollBehavior = "";
+      }
+    }
+    scrollRAF = requestAnimationFrame(step);
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey ||
+        e.shiftKey || e.altKey) return;
+
+    var link = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!link || link.target === "_blank") return;
+
+    var hash = link.hash;
+    if (!hash || hash.length < 2) return;
+    // Same-document links only — cross-page links keep their normal behaviour.
+    if (link.pathname !== location.pathname || link.search !== location.search) return;
+
+    var target = document.getElementById(hash.slice(1));
+    if (!target) return;
+
+    e.preventDefault();
+
+    var offset = (navEl ? navEl.offsetHeight : 84) + 24;
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    var y = Math.max(0, Math.min(
+      target.getBoundingClientRect().top + window.pageYOffset - offset,
+      maxY
+    ));
+
+    if (motionQuery.matches) {
+      window.scrollTo(0, y);
+    } else {
+      scrollToY(y);
+    }
+
+    // Keep the URL shareable without letting the browser jump on its own.
+    if (history.replaceState) history.replaceState(null, "", hash);
+  });
+
   /* ---------- Motion (GSAP, with graceful fallback) ---------- */
   function showAllReveals() {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });

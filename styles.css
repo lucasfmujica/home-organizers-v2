@@ -188,7 +188,8 @@
 }
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 84px;
+    /* --nav-h is kept in sync with the real nav height by script.js */
+    scroll-padding-top: calc(var(--nav-h, 84px) + 24px);
 }
 body {
     margin: 0;
@@ -2193,7 +2194,7 @@ html.gsap .reveal {
     list-style: disc;
     margin-bottom: 8px;
 }
-.subpage-body a {
+.subpage-body a:not(.btn) {
     color: var(--accent);
     text-decoration: underline;
 }
