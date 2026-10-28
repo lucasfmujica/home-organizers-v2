@@ -86,7 +86,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block"
         />
-        <link rel="stylesheet" href="styles.css?v=3" />
+        <link rel="stylesheet" href="styles.css?v=4" />
     </head>
     <body>
         <header class="nav">
@@ -119,17 +119,29 @@
         </header>
 
         <main>
-            <section class="subpage-hero">
+            <section class="subpage-hero subpage-hero--media">
                 <div class="container">
-                    <h1 class="h2">
-                        Professional home organizer in
-                        <em>Nassau County, NY</em>
-                    </h1>
-                    <p class="lead">
-                        Warm, judgment-free decluttering and home organizing for
-                        busy Nassau County families — from Garden City to
-                        Massapequa, we turn cluttered spaces into calm ones.
-                    </p>
+                    <div class="subpage-hero-copy">
+                        <h1 class="h2">
+                            Professional home organizer in
+                            <em>Nassau County, NY</em>
+                        </h1>
+                        <p class="lead">
+                            Warm, judgment-free decluttering and home organizing for
+                            busy Nassau County families — from Garden City to
+                            Massapequa, we turn cluttered spaces into calm ones.
+                        </p>
+                    </div>
+                    <figure class="subpage-hero-figure">
+                        <img
+                            src="assets/images/after1.webp"
+                            alt="Organized primary bedroom closet in Garden City, Nassau County"
+                            width="1500"
+                            height="2000"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                    </figure>
                 </div>
             </section>
             <section class="subpage-body">
@@ -151,6 +163,23 @@
                         what stays is yours. The result is a home that's easier
                         to live in — and easier to keep that way.
                     </p>
+
+                    <figure class="subpage-project">
+                        <div class="ba-pair">
+                            <div class="ba-frame ba-frame--before">
+                                <span class="ba-tag">Before</span
+                                ><img src="assets/images/before0.webp" alt="Pantry shelving in Garden City before organizing, crowded with baskets, food and loose items" width="1200" height="1600" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="ba-frame ba-frame--after">
+                                <span class="ba-tag">After</span
+                                ><img src="assets/images/after0.webp" alt="The same Garden City pantry after organizing, with labeled bins and clear containers" width="1500" height="2000" loading="lazy" decoding="async" />
+                            </div>
+                        </div>
+                        <figcaption class="ba-caption">
+                            <span class="ms" aria-hidden="true">countertops</span>
+                            <p>Recent project: Pantry — Garden City</p>
+                        </figcaption>
+                    </figure>
 
                     <h2 class="h5">Home organizing in Hempstead &amp; Massapequa</h2>
                     <p>
@@ -373,6 +402,6 @@
             </div>
         </footer>
         <script src="analytics.js?v=2" defer></script>
-        <script src="script.js?v=2" defer></script>
+        <script src="script.js?v=3" defer></script>
     </body>
 </html>

@@ -86,7 +86,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block"
         />
-        <link rel="stylesheet" href="styles.css?v=3" />
+        <link rel="stylesheet" href="styles.css?v=4" />
     </head>
     <body>
         <header class="nav">
@@ -119,17 +119,29 @@
         </header>
 
         <main>
-            <section class="subpage-hero">
+            <section class="subpage-hero subpage-hero--media">
                 <div class="container">
-                    <h1 class="h2">
-                        Closet organizing on
-                        <em>Long Island</em>
-                    </h1>
-                    <p class="lead">
-                        Closets that close, clothes you can actually see, and a
-                        morning routine that doesn't start with a pile on the
-                        bed. Hands-on closet organizing, with zero judgment.
-                    </p>
+                    <div class="subpage-hero-copy">
+                        <h1 class="h2">
+                            Closet organizing on
+                            <em>Long Island</em>
+                        </h1>
+                        <p class="lead">
+                            Closets that close, clothes you can actually see, and a
+                            morning routine that doesn't start with a pile on the
+                            bed. Hands-on closet organizing, with zero judgment.
+                        </p>
+                    </div>
+                    <figure class="subpage-hero-figure">
+                        <img
+                            src="assets/images/after1.webp"
+                            alt="Organized primary bedroom closet with shirts hung together and shoes on shelves"
+                            width="1500"
+                            height="2000"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                    </figure>
                 </div>
             </section>
             <section class="subpage-body">
@@ -144,6 +156,23 @@
                         bins, matching hangers or a shelf divider would make a
                         real difference, we'll recommend them.
                     </p>
+
+                    <figure class="subpage-project">
+                        <div class="ba-pair">
+                            <div class="ba-frame ba-frame--before">
+                                <span class="ba-tag">Before</span
+                                ><img src="assets/images/before1.webp" alt="Primary bedroom closet in Garden City before organizing, with clothes piled on the shelves" width="1500" height="2000" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="ba-frame ba-frame--after">
+                                <span class="ba-tag">After</span
+                                ><img src="assets/images/after1.webp" alt="The same closet after organizing, with shirts hung together and shoes on their own shelves" width="1500" height="2000" loading="lazy" decoding="async" />
+                            </div>
+                        </div>
+                        <figcaption class="ba-caption">
+                            <span class="ms" aria-hidden="true">checkroom</span>
+                            <p>Recent project: Primary bedroom closet — Garden City</p>
+                        </figcaption>
+                    </figure>
 
                     <h2 class="h5">Closets we organize</h2>
                     <ul>
@@ -199,6 +228,14 @@
                         >
                         for the rest of the house.
                     </p>
+
+                    <div class="subpage-quote">
+                        <div class="testi-stars" aria-label="5 out of 5 stars"><span class="ms fill">star</span><span class="ms fill">star</span><span class="ms fill">star</span><span class="ms fill">star</span><span class="ms fill">star</span></div>
+                        <blockquote>
+                            <p>"I didn't know where to start with my pantry, but Caro completely revamped it — now everything has a designated place and there's no more clutter! She's so kind and easy to work with. If you're thinking about getting organized, she'll give you the jump start you need ✨"</p>
+                        </blockquote>
+                        <p class="who"><b>Danielle</b> · Walk-in pantry · Commack, NY</p>
+                    </div>
 
                     <div class="subpage-cta">
                         <h2 class="h5">Ready for a closet that closes?</h2>
@@ -354,6 +391,6 @@
             </div>
         </footer>
         <script src="analytics.js?v=2" defer></script>
-        <script src="script.js?v=2" defer></script>
+        <script src="script.js?v=3" defer></script>
     </body>
 </html>

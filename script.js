@@ -29,6 +29,42 @@
     });
   }
 
+  /* ---------- Before & after compare handle (mobile): draggable reveal divider ---------- */
+  function setComparePos(pair, clientX) {
+    var r = pair.getBoundingClientRect();
+    var pct = ((clientX - r.left) / r.width) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    pair.style.setProperty("--ba-pos", pct + "%");
+  }
+  function addCompareHandle(pair, onDragChange) {
+    pair.style.setProperty("--ba-pos", "50%");
+    var handle = document.createElement("div");
+    handle.className = "ba-handle";
+    handle.setAttribute("role", "slider");
+    handle.setAttribute("aria-label", "Drag to compare before and after");
+    handle.innerHTML =
+      '<div class="ba-grip"><span class="ms">chevron_left</span><span class="ms">chevron_right</span></div>';
+    pair.appendChild(handle);
+
+    var dragging = false;
+    handle.addEventListener("pointerdown", function (e) {
+      e.preventDefault();
+      dragging = true;
+      if (onDragChange) onDragChange(true);
+      if (handle.setPointerCapture) handle.setPointerCapture(e.pointerId);
+    });
+    handle.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      setComparePos(pair, e.clientX);
+    });
+    function endDrag() {
+      dragging = false;
+      if (onDragChange) onDragChange(false);
+    }
+    handle.addEventListener("pointerup", endDrag);
+    handle.addEventListener("pointercancel", endDrag);
+  }
+
   /* ---------- Before & After carousel ---------- */
   var track = document.getElementById("baTrack");
   if (track) {
@@ -62,35 +98,9 @@
     if (prev) prev.addEventListener("click", function () { go(idx - 1); restartAuto(); });
     if (next) next.addEventListener("click", function () { go(idx + 1); restartAuto(); });
 
-    /* ---- Interactive before/after slider (mobile): draggable reveal divider ---- */
-    function setPos(pair, clientX) {
-      var r = pair.getBoundingClientRect();
-      var pct = ((clientX - r.left) / r.width) * 100;
-      pct = Math.max(0, Math.min(100, pct));
-      pair.style.setProperty("--ba-pos", pct + "%");
-    }
+    /* ---- Interactive before/after slider (mobile) ---- */
     Array.prototype.forEach.call(track.querySelectorAll(".ba-pair"), function (pair) {
-      pair.style.setProperty("--ba-pos", "50%");
-      var handle = document.createElement("div");
-      handle.className = "ba-handle";
-      handle.setAttribute("role", "slider");
-      handle.setAttribute("aria-label", "Drag to compare before and after");
-      handle.innerHTML =
-        '<div class="ba-grip"><span class="ms">chevron_left</span><span class="ms">chevron_right</span></div>';
-      pair.appendChild(handle);
-
-      handle.addEventListener("pointerdown", function (e) {
-        e.preventDefault();
-        baDragging = true;
-        if (handle.setPointerCapture) handle.setPointerCapture(e.pointerId);
-      });
-      handle.addEventListener("pointermove", function (e) {
-        if (!baDragging) return;
-        setPos(pair, e.clientX);
-      });
-      function endDrag() { baDragging = false; }
-      handle.addEventListener("pointerup", endDrag);
-      handle.addEventListener("pointercancel", endDrag);
+      addCompareHandle(pair, function (d) { baDragging = d; });
     });
 
     /* basic swipe (ignored while dragging the compare handle) */
@@ -128,6 +138,11 @@
     render();
     startAuto();
   }
+
+  /* Standalone before/after pairs on service and area pages */
+  Array.prototype.forEach.call(document.querySelectorAll(".subpage-project .ba-pair"), function (pair) {
+    addCompareHandle(pair);
+  });
 
   /* ---------- Keep --nav-h in sync (hero uses 100svh - nav) ---------- */
   var navEl = document.querySelector(".nav");
@@ -315,8 +330,28 @@
         });
       });
 
+      /* Arriving on index.html#contact from another page, the browser jumps
+         straight to the anchor and ScrollTrigger never sees those groups
+         "enter" — they stay invisible until the visitor scrolls. Reveal
+         anything already on screen (or above it) whenever that can happen. */
+      var revealPassed = function () {
+        var limit = window.innerHeight * 0.86;
+        var pending = scrollReveals.filter(function (el) {
+          return gsap.getProperty(el, "opacity") < 0.01 &&
+            el.getBoundingClientRect().top < limit;
+        });
+        if (pending.length) {
+          gsap.to(pending, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08, overwrite: true });
+        }
+      };
+      window.addEventListener("hashchange", revealPassed);
+      window.addEventListener("scroll", revealPassed, { passive: true, once: true });
+
       /* Recalculate positions once images have loaded */
-      window.addEventListener("load", function () { ST.refresh(); });
+      window.addEventListener("load", function () {
+        ST.refresh();
+        revealPassed();
+      });
     } else {
       gsap.to(scrollReveals, { opacity: 1, y: 0, duration: 0.6 });
     }
