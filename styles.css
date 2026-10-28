@@ -2212,8 +2212,8 @@ html.gsap .reveal {
 
 /* ---------- Subpages (areas, services, privacy) ---------- */
 .subpage-hero {
-    padding: calc(var(--nav-h, 84px) + clamp(48px, 7vw, 96px)) 0
-        clamp(40px, 5vw, 64px);
+    padding: calc(var(--nav-h, 84px) + clamp(48px, 7vw, 96px))
+        var(--section-pad-x) clamp(40px, 5vw, 64px);
     background: var(--bg2);
 }
 .subpage-hero .container {
@@ -2223,7 +2223,7 @@ html.gsap .reveal {
     margin-top: 18px;
 }
 .subpage-body {
-    padding: clamp(40px, 6vw, 80px) 0;
+    padding: clamp(40px, 6vw, 80px) var(--section-pad-x);
 }
 .subpage-body .container {
     max-width: 52rem;
