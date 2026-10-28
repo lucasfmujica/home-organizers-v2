@@ -89,6 +89,7 @@
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block"
         />
         <link rel="stylesheet" href="styles.css?v=4" />
+        <link rel="stylesheet" href="contact-form.css?v=2" />
     </head>
     <body>
         <header class="nav">
@@ -113,7 +114,7 @@
                     <a href="index.html#about">About</a>
                 </nav>
                 <div class="nav-right">
-                    <a href="index.html#contact" class="btn btn--primary btn--nav"
+                    <a href="index.html#contact" data-open-contact="" class="btn btn--primary btn--nav"
                         >Contact</a
                     >
                 </div>
@@ -238,7 +239,7 @@
                             we'll listen and tell you exactly how we'd help.
                         </p>
                         <a
-                            href="index.html#contact"
+                            href="index.html#contact" data-open-contact="Whole home"
                             class="btn btn--primary btn--lg"
                             >Book a free consultation</a
                         >
@@ -322,7 +323,7 @@
                                 >
                             </li>
                             <li>
-                                <a href="index.html#contact">Book a consultation</a>
+                                <a href="index.html#contact" data-open-contact="">Book a consultation</a>
                             </li>
                         </ul>
                     </div>
@@ -384,7 +385,117 @@
                 </div>
             </div>
         </footer>
+        <dialog id="contactModal" class="hc-root hc-modal" aria-labelledby="contactModalTitle">
+        <div class="hc-sheet">
+        <div class="hc-modal-head"><span class="hc-grab" aria-hidden="true"></span><h2 class="hc-modal-title" id="contactModalTitle">Book your free consultation</h2><button type="button" class="hc-close" data-close="" aria-label="Close"><span class="ms" aria-hidden="true">close</span></button></div>
+        <div class="hc-modal-body">
+        <div class="hc-panel">
+        <form id="contactForm" name="contact" method="POST" action="/thank-you.html" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hc-hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="hc-progress js-only">
+        <p id="hcProgress" aria-live="polite"><b>Step 1 of 3</b> · Your space</p>
+        <div class="hc-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span></div>
+        </div>
+        <div class="hc-step" data-step="0" role="group" aria-label="Step 1 of 3: Your space" tabindex="-1">
+        <fieldset class="hc-group" data-for="need" aria-describedby="hcNeedHint err-need">
+        <legend>What space needs help?</legend>
+        <p class="hc-help hc-need-hint js-only" id="hcNeedHint">Choose one to continue.</p>
+        <div class="hc-options">
+        <label class="hc-opt"><input type="radio" name="need" value="Closet" required=""><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">checkroom</span><span>Closet</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Pantry &amp; kitchen"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">kitchen</span><span>Pantry &amp; kitchen</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Playroom"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">toys</span><span>Playroom</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Garage &amp; basement"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">garage</span><span>Garage &amp; basement</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Whole home"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">home</span><span>Whole home</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Moving &amp; downsizing"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">package_2</span><span>Moving &amp; downsizing</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Digital workspace"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">laptop_mac</span><span>Digital workspace</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        <label class="hc-opt"><input type="radio" name="need" value="Other"><span class="hc-card"><span class="ms hc-ico" aria-hidden="true">more_horiz</span><span>Other</span><span class="hc-tick" aria-hidden="true"><span class="ms">check</span></span></span></label>
+        </div>
+        </fieldset>
+        <p class="hc-err" id="err-need" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        <div class="hc-step" data-step="1" role="group" aria-label="Step 2 of 3: Where &amp; when" tabindex="-1">
+        <div class="hc-field" data-for="location">
+        <label for="hcLocation" class="hc-q">Where’s your home?</label>
+        <input type="text" id="hcLocation" name="location" autocomplete="address-level2" placeholder="Town or ZIP" required="" aria-describedby="err-location">
+        <p class="hc-err" id="err-location" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        <fieldset class="hc-group" data-for="timeline" aria-describedby="err-timeline">
+        <legend class="hc-q">When would you like to start?</legend>
+        <div class="hc-chips">
+        <label class="hc-chip"><input type="radio" name="timeline" value="ASAP" required=""><span>ASAP</span></label>
+        <label class="hc-chip"><input type="radio" name="timeline" value="This month"><span>This month</span></label>
+        <label class="hc-chip"><input type="radio" name="timeline" value="Just exploring"><span>Just exploring</span></label>
+        </div>
+        <div style="margin-top:10px"><p class="hc-err" id="err-timeline" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p></div>
+        </fieldset>
+        <div class="hc-nav js-only"><button type="button" class="hc-back" data-back=""><span class="ms" aria-hidden="true">arrow_back</span><span>Back</span></button><button type="button" class="hc-btn" data-next=""><span>Continue</span><span class="ms" aria-hidden="true">arrow_forward</span></button></div>
+        </div>
+        <div class="hc-step" data-step="2" role="group" aria-label="Step 3 of 3: How to reach you" tabindex="-1">
+        <div class="hc-field" data-for="fullName">
+        <label for="hcName">Name</label>
+        <input type="text" id="hcName" name="fullName" autocomplete="name" required="" aria-describedby="err-fullName">
+        <p class="hc-err" id="err-fullName" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        <fieldset class="hc-group" data-for="contactPref" aria-describedby="err-contactPref">
+        <legend class="hc-q hc-q-sm">Best way to reach you?</legend>
+        <div class="hc-chips">
+        <label class="hc-chip"><input type="radio" name="contactPref" value="Text" required=""><span><span class="ms" aria-hidden="true">sms</span>Text</span></label>
+        <label class="hc-chip"><input type="radio" name="contactPref" value="Call"><span><span class="ms" aria-hidden="true">call</span>Call</span></label>
+        <label class="hc-chip"><input type="radio" name="contactPref" value="Email"><span><span class="ms" aria-hidden="true">mail</span>Email</span></label>
+        </div>
+        <div style="margin-top:10px"><p class="hc-err" id="err-contactPref" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p></div>
+        </fieldset>
+        <div class="hc-2col">
+        <div class="hc-field" data-for="phone">
+        <label for="hcPhone">Phone <span class="hc-tag" id="tag-phone"></span></label>
+        <input type="tel" id="hcPhone" name="phone" autocomplete="tel" inputmode="tel" aria-describedby="err-phone">
+        <p class="hc-err" id="err-phone" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        <div class="hc-field" data-for="email">
+        <label for="hcEmail">Email <span class="hc-tag" id="tag-email"></span></label>
+        <input type="email" id="hcEmail" name="email" autocomplete="email" aria-describedby="err-email">
+        <p class="hc-err" id="err-email" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        </div>
+        <div class="hc-field" data-for="photo">
+        <span class="hc-flabel" id="hcPhotoLabel">Send a photo (optional) — no tidying first!</span>
+        <label class="hc-drop" for="hcPhoto"><span class="ms" aria-hidden="true">add_photo_alternate</span><span><b>Add up to 3 photos</b><small>Tap to choose, or drop them here</small></span><input type="file" id="hcPhoto" name="photo" accept="image/*" multiple="" aria-labelledby="hcPhotoLabel" aria-describedby="err-photo"></label>
+        <input type="file" name="photo2" accept="image/*" hidden><input type="file" name="photo3" accept="image/*" hidden>
+        <ul class="hc-thumbs js-only" id="hcThumbs" aria-label="Selected photos"></ul>
+        <p class="hc-err" id="err-photo" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
+        </div>
+        <div class="hc-field">
+        <label for="hcMessage">Message <span class="hc-tag">(optional)</span></label>
+        <textarea id="hcMessage" name="message" rows="3" placeholder="Anything you’d like Caro to know"></textarea>
+        </div>
+        <div class="hc-alert" id="formError" role="alert" hidden="">
+        <p><span class="ms" aria-hidden="true">error</span><span>Your request didn’t go through — that’s on us, not you.</span></p>
+        <p>Everything you typed is still here, so you can try again. Or reach Caro directly:</p>
+        <ul><li><a href="tel:+14159632571"><span class="ms" aria-hidden="true">call</span>(415) 963-2571</a></li><li><a href="mailto:homeorganizerslongisland@gmail.com"><span class="ms" aria-hidden="true">mail</span>homeorganizerslongisland@gmail.com</a></li></ul>
+        </div>
+        </div>
+        <div class="hc-send">
+        <div class="hc-nav"><button type="button" class="hc-back js-only" data-back=""><span class="ms" aria-hidden="true">arrow_back</span><span>Back</span></button><button type="submit" class="hc-btn hc-btn-main"><span class="hc-idle">Book my free consultation</span><span class="hc-sending" aria-hidden="true"><span class="hc-spin"></span>Sending…</span></button></div>
+        <p class="hc-privacy">We’ll never share your details — <a href="privacy.html">privacy policy</a>.</p>
+        </div>
+        <p class="hc-sr" id="hcStatus" aria-live="polite"></p>
+        </form>
+        <div class="hc-success" id="hcSuccess" hidden="">
+        <span class="ms" aria-hidden="true">check</span>
+        <h3 tabindex="-1">Thank you<span id="hcSuccessName"></span> — it’s on its way.</h3>
+        <p>Caro will reach out personally to set up your free consultation. No need to tidy up before then.</p><button type="button" class="hc-btn" data-close="">Close</button>
+        </div>
+        </div>
+        <div class="hc-direct">
+        <p><span class="hc-pre">Prefer to talk?</span><a href="sms:+14159632571" aria-label="Text us at (415) 963-2571"><span class="ms" aria-hidden="true">sms</span>Text</a><span class="hc-dot" aria-hidden="true">·</span><a href="tel:+14159632571" aria-label="Call (415) 963-2571"><span class="ms" aria-hidden="true">call</span>Call</a><span class="hc-dot" aria-hidden="true">·</span><a href="mailto:homeorganizerslongisland@gmail.com" aria-label="Email homeorganizerslongisland@gmail.com"><span class="ms" aria-hidden="true">mail</span>Email</a><span class="hc-phone">(415) 963-2571</span></p>
+        <p class="hc-area"><span class="ms" aria-hidden="true">location_on</span>Long Island, NYC &amp; beyond</p>
+        </div>
+        </div>
+        </div>
+        </dialog>
         <script src="analytics.js?v=2" defer></script>
-        <script src="script.js?v=3" defer></script>
+        <script src="script.js?v=4" defer></script>
+        <script src="contact-form.js?v=1" defer></script>
     </body>
 </html>
