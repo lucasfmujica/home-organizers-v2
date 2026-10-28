@@ -236,7 +236,8 @@
         item.classList.remove("closing");
         item.open = true;
       }
-      var end = closing ? summary.offsetHeight + "px" : item.offsetHeight + "px";
+      // Closed height = summary + the item's own top/bottom border
+      var end = (closing ? summary.offsetHeight + item.offsetHeight - item.clientHeight : item.offsetHeight) + "px";
       anim = item.animate({ height: [start, end] }, { duration: 320, easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
       anim.onfinish = function () {
         anim = null;
@@ -363,9 +364,15 @@
           // A rejected submission must not look like a successful one.
           if (!res.ok) { fail(); return; }
           var need = data.get("need");
-          // Let the conversion event fire before we navigate away.
-          if (window.hoTrack) window.hoTrack("generate_lead", { need: need || "not specified" });
-          window.location.href = "thank-you.html";
+          var goToThanks = function () {
+            window.location.href = "thank-you.html";
+          };
+          // Wait for the conversion hit to leave before navigating away.
+          if (window.hoTrack) {
+            window.hoTrack("generate_lead", { need: need || "not specified" }, goToThanks);
+          } else {
+            goToThanks();
+          }
         })
         .catch(fail);
     });

@@ -183,11 +183,31 @@
   };
 
   /* ---------- Event tracking ---------- */
-  function track(name, params) {
+  /* `done` (optional) runs once the hit is sent, or after a short timeout,
+     so callers can navigate away without dropping the event — gtag batches
+     hits and a page unload can swallow them. */
+  function track(name, params, done) {
     var payload = params || {};
     payload.page_path = location.pathname;
     log("event", name, payload);
-    if (window.gtag && GA4_ID) window.gtag("event", name, payload);
+
+    var finished = false;
+    function finish() {
+      if (finished || !done) return;
+      finished = true;
+      done();
+    }
+
+    if (window.gtag && GA4_ID) {
+      if (done) {
+        payload.event_callback = finish;
+        payload.event_timeout = 1500;
+        setTimeout(finish, 1600); // gtag never calls back if it failed to load
+      }
+      window.gtag("event", name, payload);
+    } else {
+      finish();
+    }
   }
   // script.js fires generate_lead through this after a confirmed submission.
   window.hoTrack = track;
