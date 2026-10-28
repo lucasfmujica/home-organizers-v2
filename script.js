@@ -164,8 +164,15 @@
       document.documentElement.style.scrollBehavior = "";
     }
   }
-  // Any manual scroll wins over an animation in flight.
-  ["wheel", "touchstart", "keydown"].forEach(function (evt) {
+  // Any manual scroll wins over an animation in flight — except wheel events in
+  // the first moments, which are usually trackpad inertia from the scroll that
+  // came just before the click, not a new intent. Honouring those stopped the
+  // animation part-way and left the section tucked under the nav.
+  var scrollStartedAt = 0;
+  window.addEventListener("wheel", function () {
+    if (performance.now() - scrollStartedAt > 350) stopScroll();
+  }, { passive: true });
+  ["touchstart", "keydown"].forEach(function (evt) {
     window.addEventListener(evt, stopScroll, { passive: true });
   });
 
@@ -173,12 +180,16 @@
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
-  function scrollToY(end) {
+  /* getEnd is re-read when the animation finishes, so anything that moved the
+     target while scrolling (late images, fonts) is corrected on the last frame. */
+  function scrollToY(getEnd) {
+    var end = getEnd();
     var start = window.pageYOffset;
     var delta = end - start;
     if (Math.abs(delta) < 2) return;
 
     stopScroll();
+    scrollStartedAt = performance.now();
     // Our own per-frame scrollTo calls must not be re-smoothed by the browser.
     document.documentElement.style.scrollBehavior = "auto";
 
@@ -194,6 +205,8 @@
         scrollRAF = requestAnimationFrame(step);
       } else {
         scrollRAF = null;
+        var settled = getEnd();
+        if (Math.abs(settled - window.pageYOffset) > 2) window.scrollTo(0, settled);
         document.documentElement.style.scrollBehavior = "";
       }
     }
@@ -217,17 +230,19 @@
 
     e.preventDefault();
 
-    var offset = (navEl ? navEl.offsetHeight : 84) + 24;
-    var maxY = document.documentElement.scrollHeight - window.innerHeight;
-    var y = Math.max(0, Math.min(
-      target.getBoundingClientRect().top + window.pageYOffset - offset,
-      maxY
-    ));
+    var targetY = function () {
+      var offset = (navEl ? navEl.offsetHeight : 84) + 24;
+      var maxY = document.documentElement.scrollHeight - window.innerHeight;
+      return Math.max(0, Math.min(
+        target.getBoundingClientRect().top + window.pageYOffset - offset,
+        maxY
+      ));
+    };
 
     if (motionQuery.matches) {
-      window.scrollTo(0, y);
+      window.scrollTo(0, targetY());
     } else {
-      scrollToY(y);
+      scrollToY(targetY);
     }
 
     // Keep the URL shareable without letting the browser jump on its own.

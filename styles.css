@@ -985,6 +985,16 @@ body.nav-open .nav-overlay-foot {
     color: rgba(255, 255, 255, 0.86);
     font-size: var(--text-regular);
 }
+/* .btn--link is dark and the card is a stretched flex column: keep the link
+   light, left-aligned and only as wide as its text. */
+.bgcard .btn--link {
+    align-self: flex-start;
+    margin-top: 16px;
+    color: #fff;
+}
+.bgcard .btn--link:hover {
+    color: var(--color-arrowtown-lighter);
+}
 @media (max-width: 991px) {
     .services-grid {
         grid-template-columns: 1fr;
@@ -1003,7 +1013,8 @@ body.nav-open .nav-overlay-foot {
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .bgcard h3,
-    .bgcard p {
+    .bgcard p,
+    .bgcard .btn--link {
         opacity: 0;
         transform: translateY(18px);
         transition:
@@ -1012,6 +1023,9 @@ body.nav-open .nav-overlay-foot {
     }
     .bgcard p {
         transition-delay: 0.07s;
+    }
+    .bgcard .btn--link {
+        transition-delay: 0.14s;
     }
     .bgcard:hover::after,
     .bgcard:focus-within::after {
@@ -1023,8 +1037,10 @@ body.nav-open .nav-overlay-foot {
     }
     .bgcard:hover h3,
     .bgcard:hover p,
+    .bgcard:hover .btn--link,
     .bgcard:focus-within h3,
-    .bgcard:focus-within p {
+    .bgcard:focus-within p,
+    .bgcard:focus-within .btn--link {
         opacity: 1;
         transform: none;
     }
