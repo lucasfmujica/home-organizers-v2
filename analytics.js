@@ -182,6 +182,25 @@
     location.reload();
   };
 
+  /* ---------- Clarity smart events & tags ---------- */
+  /* Mirrors our events into Clarity (only once it has loaded, i.e. after
+     consent) so recordings can be filtered — "dropped at step 2", "picked
+     Closet" — and a funnel built from view_contact_form → form_step_2 →
+     form_step_3 → generate_lead. Steps become separate event names because a
+     Clarity funnel step is an event, not an event plus a parameter. Only these
+     non-personal fields ever become tags. */
+  var CLARITY_TAGS = ["need", "timeline", "contact_pref", "form_location", "preset", "cta_location"];
+  function toClarity(name, params) {
+    if (typeof window.clarity !== "function") return;
+    var event = name === "form_step" && params.step ? "form_step_" + params.step : name;
+    window.clarity("event", event);
+    CLARITY_TAGS.forEach(function (key) {
+      if (params[key] != null && params[key] !== "") window.clarity("set", key, String(params[key]));
+    });
+    if (name === "generate_lead") window.clarity("set", "lead", "yes");
+    log("clarity", event);
+  }
+
   /* ---------- Event tracking ---------- */
   /* `done` (optional) runs once the hit is sent, or after a short timeout,
      so callers can navigate away without dropping the event — gtag batches
@@ -197,6 +216,8 @@
       finished = true;
       done();
     }
+
+    toClarity(name, payload);
 
     if (window.gtag && GA4_ID) {
       if (done) {
