@@ -13,12 +13,17 @@
         <link
             rel="icon"
             type="image/png"
-            href="assets/images/Logo Home (76 x 40 px).png"
+            href="assets/images/favicon.png"
         />
+        <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+        <meta name="theme-color" content="#94846d" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
         <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=block"
         />
         <link rel="stylesheet" href="styles.css" />
     </head>
@@ -33,6 +38,10 @@
                     <img
                         src="assets/images/logo-li.png"
                         alt="Home Organizers Long Island"
+                        width="912"
+                        height="480"
+                        loading="eager"
+                        decoding="async"
                     />
                 </a>
                 <nav class="nav-links" aria-label="Primary">
@@ -53,7 +62,7 @@
                 <div class="container">
                     <h1 class="h2">Privacy Policy</h1>
                     <p class="lead">
-                        Last updated: June 10, 2026. Your privacy matters to us —
+                        Last updated: August 6, 2026. Your privacy matters to us —
                         here's exactly what we collect and how we use it.
                     </p>
                 </div>
@@ -76,8 +85,10 @@
                         When you submit our contact form, we collect the
                         information you provide: your name, email address, phone
                         number (optional), the type of help you're looking for,
-                        and your message. We do not collect any other personal
-                        information through this website.
+                        and your message. Separately, our analytics tools collect
+                        anonymous usage data — see "Cookies and analytics" below.
+                        We do not collect any other personal information through
+                        this website.
                     </p>
 
                     <h2 class="h5">How we use your information</h2>
@@ -112,9 +123,51 @@
 
                     <h2 class="h5">Cookies and analytics</h2>
                     <p>
-                        This website does not set tracking cookies and does not
-                        use advertising trackers. If we add analytics tools in
-                        the future, we will update this policy accordingly.
+                        We use two analytics tools to understand how people find
+                        and use this site, so we can keep improving it. We do not
+                        run advertising trackers, and we never sell or share what
+                        these tools collect.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Google Analytics 4</strong> — measures how
+                            many people visit, which pages they read, and which
+                            sources (search, social, referrals) bring them here.
+                            See
+                            <a
+                                href="https://policies.google.com/privacy"
+                                target="_blank"
+                                rel="noopener"
+                                >Google's privacy policy</a
+                            >.
+                        </li>
+                        <li>
+                            <strong>Microsoft Clarity</strong> — records
+                            anonymised page interactions (clicks and scrolling)
+                            so we can spot confusing layouts. See
+                            <a
+                                href="https://privacy.microsoft.com/privacystatement"
+                                target="_blank"
+                                rel="noopener"
+                                >Microsoft's privacy statement</a
+                            >.
+                        </li>
+                    </ul>
+                    <p>
+                        On your first visit you'll see a banner asking whether
+                        you accept analytics cookies. Until you accept, Google
+                        Analytics runs in a cookieless mode that only records
+                        anonymous, aggregated visit counts, and Microsoft Clarity
+                        does not load at all. If you decline, nothing further is
+                        stored on your device.
+                    </p>
+                    <p>
+                        To change your choice later, clear this site's data in
+                        your browser settings, or
+                        <a href="#" onclick="if(window.hoResetConsent){window.hoResetConsent();}return false;"
+                            >reset your cookie preferences</a
+                        >
+                        to see the banner again.
                     </p>
 
                     <h2 class="h5">Data retention</h2>
@@ -161,6 +214,10 @@
                         <img
                             src="assets/images/logo-li.png"
                             alt="Home Organizers Long Island"
+                            width="912"
+                            height="480"
+                            loading="eager"
+                            decoding="async"
                         />
                         <p>
                             Warm, judgment-free home organizing for busy Long Island
@@ -277,6 +334,7 @@
                 </div>
             </div>
         </footer>
-        <script src="script.js"></script>
+        <script src="analytics.js" defer></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

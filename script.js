@@ -295,20 +295,50 @@
   /* ---------- Contact form (Netlify Forms) ---------- */
   var form = document.getElementById("contactForm");
   if (form) {
+    var errorBox = document.getElementById("formError");
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var submitLabel = submitBtn ? submitBtn.textContent : "";
+    var sending = false;
+
+    function fail() {
+      sending = false;
+      if (errorBox) errorBox.hidden = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitLabel;
+      }
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (sending) return;
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
+
+      sending = true;
+      if (errorBox) errorBox.hidden = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
       var data = new FormData(form);
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data).toString()
       })
-        .then(function () { window.location.href = "thank-you.html"; })
-        .catch(function () { window.location.href = "thank-you.html"; });
+        .then(function (res) {
+          // A rejected submission must not look like a successful one.
+          if (!res.ok) { fail(); return; }
+          var need = data.get("need");
+          // Let the conversion event fire before we navigate away.
+          if (window.hoTrack) window.hoTrack("generate_lead", { need: need || "not specified" });
+          window.location.href = "thank-you.html";
+        })
+        .catch(fail);
     });
   }
 })();
