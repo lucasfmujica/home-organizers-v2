@@ -14,7 +14,7 @@
 (function () {
   "use strict";
 
-  var GA4_ID = ""; // e.g. "G-XXXXXXXXXX"
+  var GA4_ID = "G-E7NLV3QNG0";
   var CLARITY_ID = ""; // e.g. "abcd1234ef"
 
   var STORAGE_KEY = "ho_consent"; // "granted" | "denied"
