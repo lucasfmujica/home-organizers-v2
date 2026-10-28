@@ -15,7 +15,7 @@
   "use strict";
 
   var GA4_ID = "G-E7NLV3QNG0";
-  var CLARITY_ID = ""; // e.g. "abcd1234ef"
+  var CLARITY_ID = "z4kt20itio";
 
   var STORAGE_KEY = "ho_consent"; // "granted" | "denied"
   var DEBUG = /[?&]debug=1\b/.test(location.search);
