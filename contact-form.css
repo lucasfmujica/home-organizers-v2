@@ -46,6 +46,7 @@ section.hc-root{container-type:inline-size;background:#fff}
 /* form panel */
 .hc-panel{container-type:inline-size;background:var(--color-arrowtown-lightest);border-radius:var(--radius-card);padding:clamp(24px,3cqi,40px)}
 .hc-root form{display:grid}
+.hc-root form[hidden]{display:none}
 .hc-hp{position:absolute!important;left:-9999px}
 .hc-progress{margin-bottom:24px}
 .hc-progress p{margin:0 0 10px;font-size:.9375rem;color:var(--fg2)}
