@@ -81,6 +81,8 @@ Then visit `http://localhost:8000`.
 
 The site is fully static, so it can be deployed to any static host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3, etc.). Just publish the repository root. The canonical domain is [homeorganizersli.com](https://homeorganizersli.com/); remember to keep `sitemap.xml` and `robots.txt` pointed at the production domain.
 
+After a production deploy that adds or changes pages, run `scripts/indexnow.sh` to notify Bing and the other IndexNow engines (it submits every URL in `sitemap.xml`, or only the URLs you pass). The `<32 hex>.txt` file at the root is the IndexNow key and must stay published. Google does not use IndexNow — request indexing in Search Console instead.
+
 ## License
 
 All rights reserved. © Home Organizers Long Island.
