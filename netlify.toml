@@ -14,6 +14,13 @@
   status = 301
   force = true
 
+# Internal working notes live in the repo but must not be served.
+[[redirects]]
+  from = "/keywords.md"
+  to = "/404"
+  status = 404
+  force = true
+
 # ---------------------------------------------------------------------------
 # Security headers
 # ---------------------------------------------------------------------------
