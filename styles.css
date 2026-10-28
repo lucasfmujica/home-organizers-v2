@@ -204,6 +204,9 @@ body {
 img {
     display: block;
     max-width: 100%;
+    /* width/height attributes reserve space while loading; without this the
+       height attribute would beat each component's aspect-ratio. */
+    height: auto;
 }
 a {
     color: inherit;
@@ -2135,6 +2138,26 @@ html.gsap .reveal {
 }
 
 /* ---------- FAQ ---------- */
+.faq-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+}
+.faq-intro {
+    position: sticky;
+    top: calc(var(--nav-h, 84px) + 32px);
+}
+@media (max-width: 991px) {
+    .faq-layout {
+        grid-template-columns: 1fr;
+        gap: clamp(28px, 3vw, 40px);
+    }
+    .faq-intro {
+        position: static;
+        max-width: 46rem;
+    }
+}
 .faq-list {
     max-width: 50rem;
     display: flex;
@@ -2158,9 +2181,13 @@ html.gsap .reveal {
     font-family: 'Sora', sans-serif;
     font-weight: 500;
     color: var(--fg1);
+    transition: color 0.2s ease;
 }
 .faq-item summary::-webkit-details-marker {
     display: none;
+}
+.faq-item summary:hover {
+    color: var(--accent);
 }
 .faq-item summary .ms {
     flex: 0 0 auto;
@@ -2169,6 +2196,9 @@ html.gsap .reveal {
 }
 .faq-item[open] summary .ms {
     transform: rotate(180deg);
+}
+.faq-item.closing summary .ms {
+    transform: none;
 }
 .faq-item > p {
     padding: 0 22px 20px;

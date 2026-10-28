@@ -219,6 +219,35 @@
     if (history.replaceState) history.replaceState(null, "", hash);
   });
 
+  /* ---------- FAQ accordion: animate open/close height ---------- */
+  var faqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    var summary = item.querySelector("summary");
+    var anim = null;
+    summary.addEventListener("click", function (e) {
+      if (faqReduce.matches || !item.animate) return; // native toggle, no motion
+      e.preventDefault();
+      var closing = item.open && !item.classList.contains("closing");
+      var start = item.offsetHeight + "px";
+      if (anim) anim.cancel();
+      if (closing) {
+        item.classList.add("closing");
+      } else {
+        item.classList.remove("closing");
+        item.open = true;
+      }
+      var end = closing ? summary.offsetHeight + "px" : item.offsetHeight + "px";
+      anim = item.animate({ height: [start, end] }, { duration: 320, easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
+      anim.onfinish = function () {
+        anim = null;
+        if (closing) {
+          item.open = false;
+          item.classList.remove("closing");
+        }
+      };
+    });
+  });
+
   /* ---------- Motion (GSAP, with graceful fallback) ---------- */
   function showAllReveals() {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
