@@ -76,7 +76,7 @@ form.addEventListener('keydown',function(e){pointer=false;lastKey=e.key;if(e.key
 form.addEventListener('click',function(e){var t=e.target;
  if(t.name==='need'){if(/^Arrow/.test(lastKey)){lastKey='';return}pickNeed();return}
  var n=t.closest('[data-next]'),b=t.closest('[data-back]');
- if(n&&validate(cur))show(cur+1,true);if(b&&cur>0&&!sending)show(cur-1,true)});
+ if(n&&cur<steps.length-1&&validate(cur))show(cur+1,true);if(b&&cur>0&&!sending)show(cur-1,true)});
 form.addEventListener('submit',function(e){if(!enhanced())return;e.preventDefault();if(sending)return;
  if(cur<2){if(validate(cur))show(cur+1,true);return}
  for(var i=0;i<3;i++){if(!validate(i,true)){show(i,false);validate(i);return}}

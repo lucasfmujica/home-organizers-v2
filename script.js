@@ -343,6 +343,14 @@
         if (pending.length) {
           gsap.to(pending, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", stagger: 0.08, overwrite: true });
         }
+        /* Kicker rules have the same blind spot */
+        var rules = gsap.utils.toArray(".kicker .rule").filter(function (rule) {
+          return gsap.getProperty(rule, "scaleX") < 0.01 &&
+            rule.getBoundingClientRect().top < limit;
+        });
+        if (rules.length) {
+          gsap.to(rules, { scaleX: 1, duration: 0.9, ease: "power2.out", overwrite: true });
+        }
       };
       window.addEventListener("hashchange", revealPassed);
       window.addEventListener("scroll", revealPassed, { passive: true, once: true });

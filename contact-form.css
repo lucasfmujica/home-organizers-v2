@@ -4,8 +4,9 @@
 .hc-root{--hc-err:oklch(0.5 0.14 32);--hc-line:var(--color-ink-15);font-family:var(--font-body);color:#000}
 .hc-root *,.hc-root *::before,.hc-root *::after{box-sizing:border-box}
 .hc-root a{color:var(--accent-hover)}.hc-root a:hover{color:var(--color-arrowtown-darker)}
-section.hc-root{container-type:inline-size;background:#fff}
-.hc-wrap{max-width:var(--container-max);margin:0 auto;padding:4.5rem 5% 6rem}
+section.hc-root{container-type:inline-size;background:#fff;padding:4.5rem var(--section-pad-x) 6rem}
+/* side padding lives on the section, like every other .section, so the content lines up with them */
+.hc-wrap{max-width:var(--container-max);margin:0 auto}
 /* first screen: title + form */
 .hc-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,5cqi,72px);align-items:start}
 .hc-head{position:sticky;top:32px}
@@ -32,7 +33,8 @@ section.hc-root{container-type:inline-size;background:#fff}
 .hc-stars .ms{font-size:20px;font-variation-settings:'FILL' 1}
 .hc-review blockquote{margin:0;font-size:1.0625rem;line-height:1.55;text-wrap:pretty}
 .hc-review figcaption{margin-top:12px;font-size:.9375rem;color:var(--fg2)}
-@container (max-width:860px){.hc-wrap{padding:3.5rem 5% 4rem}.hc-top{grid-template-columns:minmax(0,1fr);gap:28px}.hc-head{position:static}.hc-strip{grid-template-columns:minmax(0,1fr);gap:32px;margin-top:48px;padding-top:32px}}
+@media (max-width:860px){section.hc-root{padding-top:3.5rem;padding-bottom:4rem}}
+@container (max-width:860px){.hc-top{grid-template-columns:minmax(0,1fr);gap:28px}.hc-head{position:static}.hc-strip{grid-template-columns:minmax(0,1fr);gap:32px;margin-top:48px;padding-top:32px}}
 /* direct contact line */
 .hc-direct{margin-top:14px;display:grid;gap:2px;font-size:.9375rem;color:var(--fg2)}
 .hc-direct p{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
@@ -43,6 +45,8 @@ section.hc-root{container-type:inline-size;background:#fff}
 .hc-direct .hc-pre{margin-right:4px}
 .hc-direct .hc-phone{margin-left:8px;padding-left:12px;border-left:1px solid var(--hc-line);color:#000;font-weight:500}
 .hc-direct .hc-area{gap:6px;min-height:32px}
+/* Phones: the number wraps onto its own line, so drop the divider and line it up with the links */
+@media (max-width:600px){.hc-direct .hc-phone{flex-basis:100%;margin-left:0;padding:4px 0 0;border-left:0}}
 /* form panel */
 .hc-panel{container-type:inline-size;background:var(--color-arrowtown-lightest);border-radius:var(--radius-card);padding:clamp(24px,3cqi,40px)}
 .hc-root form{display:grid}
@@ -145,6 +149,8 @@ section.hc-root{container-type:inline-size;background:#fff}
 .hc-send{display:grid;gap:12px;margin-top:28px}
 .hc-send[hidden]{display:none}
 .hc-privacy{margin:0;font-size:.875rem;color:var(--fg2)}
+/* Narrow panels: full-width submit with Back underneath, instead of a lone Back row above a short button */
+@container (max-width:519px){.hc-send .hc-nav{flex-direction:column-reverse;align-items:stretch;gap:4px}.hc-send .hc-btn-main{width:100%}.hc-send .hc-back{align-self:center}}
 .hc-sending{display:none}
 .hc-spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:hc-spin .8s linear infinite}
 @keyframes hc-spin{to{transform:rotate(360deg)}}
