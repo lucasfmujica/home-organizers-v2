@@ -106,6 +106,14 @@ section.hc-root{container-type:inline-size;background:#fff;padding:4.5rem var(--
 .hc-2col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 @container (max-width:479px){.hc-2col{grid-template-columns:minmax(0,1fr)}}
 .hc-help{font-size:.9375rem;color:var(--fg2);margin:0}
+/* town / ZIP suggestions (location-autocomplete.js) */
+.hc-field[data-for=location]{position:relative}
+.hc-ac{position:absolute;left:0;right:0;z-index:5;list-style:none;margin:0;padding:6px;max-height:300px;overflow-y:auto;background:#fff;border:1px solid var(--hc-line);border-radius:var(--radius-card);box-shadow:0 12px 32px var(--color-ink-15)}
+.hc-ac[hidden]{display:none}
+.hc-ac li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-height:44px;padding:10px 12px;border-radius:6px;cursor:pointer}
+.hc-ac li.is-active,.hc-ac li:hover{background:var(--color-arrowtown-lightest)}
+.hc-ac-main{font-size:1rem;color:#000}
+.hc-ac-sub{flex:none;font-size:.875rem;color:var(--fg2)}
 /* photo */
 .hc-drop{position:relative;display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px dashed var(--color-arrowtown-light);border-radius:var(--radius-card);background:#fff;cursor:pointer;transition:border-color .2s,background .2s}
 .hc-drop:hover,.hc-drop.is-over{border-color:var(--accent);background:var(--color-arrowtown-lightest)}
