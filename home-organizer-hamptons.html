@@ -460,13 +460,13 @@
         </div>
         <div class="hc-field" data-for="photo">
         <span class="hc-flabel" id="hcPhotoLabel">Send a photo (optional) — no tidying first!</span>
-        <label class="hc-drop" for="hcPhoto"><span class="ms" aria-hidden="true">add_photo_alternate</span><span><b>Add up to 3 photos</b><small>Tap to choose, or drop them here</small></span><input type="file" id="hcPhoto" name="photo" accept="image/*" multiple="" aria-labelledby="hcPhotoLabel" aria-describedby="err-photo"></label>
-        <input type="file" name="photo2" accept="image/*" hidden><input type="file" name="photo3" accept="image/*" hidden>
+        <div class="hc-drop"><label class="hc-sr" for="hcPhoto">Photo 1</label><span class="ms" aria-hidden="true">add_photo_alternate</span><span><b>Add up to 3 photos</b><small>Tap to choose, or drop them here</small></span><input type="file" id="hcPhoto" name="photo" accept="image/*" multiple="" aria-labelledby="hcPhotoLabel" aria-describedby="err-photo"></div>
+        <label class="hc-sr" for="hcPhoto2">Photo 2</label><input type="file" id="hcPhoto2" name="photo2" accept="image/*" hidden><label class="hc-sr" for="hcPhoto3">Photo 3</label><input type="file" id="hcPhoto3" name="photo3" accept="image/*" hidden>
         <ul class="hc-thumbs js-only" id="hcThumbs" aria-label="Selected photos"></ul>
         <p class="hc-err" id="err-photo" hidden=""><span class="ms" aria-hidden="true">error</span><span></span></p>
         </div>
         <div class="hc-field">
-        <label for="hcMessage">Message <span class="hc-tag">(optional)</span></label>
+        <div class="hc-flabel"><label for="hcMessage">Message</label><span class="hc-tag">(optional)</span></div>
         <textarea id="hcMessage" name="message" rows="3" placeholder="Anything you’d like Caro to know"></textarea>
         </div>
         <div class="hc-alert" id="formError" role="alert" hidden="">
