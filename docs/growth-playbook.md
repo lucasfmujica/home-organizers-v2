@@ -104,14 +104,14 @@ Reglas que le dimos y conviene repetir en cada pedido: mismos colores y tipograf
    - Descripción, servicios, horario, 15–20 fotos, link con UTM `?utm_source=google&utm_medium=organic&utm_campaign=gbp`.
    - Publicaciones semanales (las mismas de Instagram).
    - Cuando esté verificado: sumar el link al footer, a los datos estructurados (`sameAs`) y al mensaje de éxito del formulario para pedir reseñas.
-2. **Reseñas en Google:** pedírselas a Danielle, Marlo, Monika y a todos los clientes anteriores; desde ahora, a cada cliente al terminar. Responder todas.
+2. **Reseñas en Google:** pedírselas a Danielle, Monika y a todos los clientes anteriores; desde ahora, a cada cliente al terminar. Responder todas.
 3. **Número local:** Google Voice (gratis, uso personal) con código 516 o 631 que desvía al celular de Carolina. Si se hace, cambiar el 415 en todos lados a la vez: web (links, footer, formulario, JSON-LD), Instagram, GBP y directorios.
 4. **Instagram:** aplicar el perfil de arriba y arrancar el calendario.
 
 ### Mes 1–2 — contenido y presencia
 5. **Páginas nuevas:**
    - Pantry & kitchen (ya en posición 11 sin página).
-   - Playroom (trabajos en Islip y Smithtown + reseña de Marlo).
+   - Playroom (trabajos en Smithtown).
    - Digital organizing — falta saber si Carolina trabaja solo con empresas (Slack, calendarios) o también con personas (fotos, mail, archivos).
 6. **Fotos de Water Mill** y otros trabajos en los Hamptons para esa página.
 7. **Directorios** con nombre, teléfono y web idénticos: Yelp, Nextdoor, Houzz, Thumbtack, Angi/HomeAdvisor, NAPO.
