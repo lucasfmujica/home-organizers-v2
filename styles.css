@@ -351,7 +351,9 @@ p {
     font-family: var(--font-body);
     font-weight: 500;
     font-size: var(--text-medium);
-    padding: 11px 22px;
+    /* Overpass sits high in its line box (tall descender metrics), so the
+       label gets 2px more on top than below to look optically centered. */
+    padding: 13px 22px 9px;
     border: 1px solid transparent;
     cursor: pointer;
     line-height: 1.2;
@@ -403,7 +405,7 @@ p {
     background: var(--color-white-10);
 }
 .btn--sm {
-    padding: 8px 16px;
+    padding: 9px 16px 7px;
     font-size: var(--text-small);
 }
 .btn--link {
@@ -817,7 +819,7 @@ body.nav-open .nav-overlay-foot {
     margin-top: 36px;
 }
 .btn--lg {
-    padding: 15px 30px;
+    padding: 17px 30px 13px;
     font-size: var(--text-medium);
 }
 
@@ -2437,7 +2439,7 @@ html.gsap .reveal {
 .gl-chip {
     font-size: 13px;
     font-weight: 600;
-    padding: 5px 12px;
+    padding: 6px 12px 4px;
     border-radius: var(--radius-tag);
     background: var(--color-white);
     border: 1px solid var(--border);
