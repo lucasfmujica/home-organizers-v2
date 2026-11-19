@@ -5,6 +5,14 @@
 [build]
   publish = "."
 
+# Pretty URLs rewrites internal hrefs on deploy, dropping `.html`
+# (`garage-organizing-long-island.html#holiday-decor` becomes
+# `/garage-organizing-long-island#holiday-decor`). Both URLs return 200, and
+# the extensionless one is not in the sitemap. Leave the sitemap `.html` paths
+# in the published HTML. Canonical tags on those pages stay the authority.
+[build.processing.html]
+  pretty_urls = false
+
 # ---------------------------------------------------------------------------
 # Canonical host: keep all authority on the apex domain the canonicals point at.
 # ---------------------------------------------------------------------------
